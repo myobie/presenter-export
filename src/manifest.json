@@ -4,15 +4,15 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
+      "name": "Export",
+      "identifier": "presenter-export-command",
+      "script": "./export.js"
     }
   ],
   "menu": {
-    "title": "presenter-export",
+    "title": "Presenter",
     "items": [
-      "my-command-identifier"
+      "presenter-export-command"
     ]
   }
 }
