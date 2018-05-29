@@ -48,7 +48,7 @@ export default function (context) {
 
   const exportOptions = {
     output: slidesPath,
-    formats: 'svg',
+    formats: 'pdf',
     'use-id-for-name': true,
     overwriting: true
   }
@@ -61,7 +61,7 @@ export default function (context) {
   const slidesJSON = JSON.stringify(toBeExported.map(o => {
     return {
       name: o.name,
-      path: `/slides/${o.id}.svg`,
+      path: `/slides/${o.id}.pdf`,
       number: o.number
     }
   }))
