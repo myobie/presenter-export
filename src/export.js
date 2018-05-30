@@ -9,9 +9,9 @@ import path from 'path'
 export default function (context) {
   const doc = context.document
   let basePath = decodeURIComponent(path.dirname(url.parse(String(context.document.fileURL())).pathname)) + '/'
-  console.log('basePath', basePath)
+  console.debug('basePath', basePath)
   let slidesPath = path.join(basePath, 'slides') + '/'
-  console.log('slidesPath', slidesPath)
+  console.debug('slidesPath', slidesPath)
   const artboards = toArray(doc.currentPage().artboards())
 
   if (artboards.length === 0) {
@@ -54,7 +54,6 @@ export default function (context) {
   }
 
   toBeExported.forEach(o => {
-    console.log('exporting', o.name)
     dom.export(o.artboard, exportOptions)
   })
 
@@ -66,13 +65,12 @@ export default function (context) {
     }
   }))
 
-  console.log('slidesJSON', slidesJSON)
-
   const slidesJSONPath = path.join(basePath, 'slides.json')
-  console.log('slidesJSONPath', slidesJSONPath)
   const slidesNSString = NSString.stringWithString(slidesJSON)
 
   slidesNSString.writeToFile_atomically_encoding_error(slidesJSONPath, true, 4, null)
+
+  console.log(`Exported ${toBeExported.length} slides and slides.json`)
 }
 
 function pos (board) {
