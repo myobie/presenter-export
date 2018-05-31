@@ -1,4 +1,4 @@
-/* global NSString */
+/* global NSString, MSTextLayer */
 
 import ui from 'sketch/ui'
 import dom from 'sketch/dom'
@@ -58,10 +58,21 @@ export default function (context) {
   })
 
   const slidesJSON = JSON.stringify(toBeExported.map(o => {
-    return {
-      name: o.name,
-      path: `/slides/${o.id}.pdf`,
-      number: o.number
+    const layers = o.artboard.layers()
+
+    if (layers.length === 1 && layers[0].isMemberOfClass(MSTextLayer) && String(layers[0].name()) === 'override') {
+      console.log('found override layer', String(layers[0].stringValue()))
+      return {
+        name: o.name,
+        path: String(layers[0].stringValue()),
+        number: o.number
+      }
+    } else {
+      return {
+        name: o.name,
+        path: `/slides/${o.id}.pdf`,
+        number: o.number
+      }
     }
   }))
 
