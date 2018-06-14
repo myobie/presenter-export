@@ -16,15 +16,13 @@
     "build": "skpm-build",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
-    "postinstall": "npm run build && skpm-link",
-    "combine": "node combine.js"
+    "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.2",
-    "sketch-utils": "^0.1.2"
+    "@skpm/builder": "^0.5.2"
   },
   "author": "Nathan Herald <me@nathanherald.com>",
   "dependencies": {
-    "pdfkit": "^0.8.3"
+    "sketch-utils": "^0.1.2"
   }
 }
